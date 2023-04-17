@@ -1,14 +1,14 @@
 --// Destroy other instances
 for _,v in pairs(game.CoreGui:GetChildren()) do
-    if v.Name == "Syaoul_UI" then
+    if v.Name == "Syaoul_Gui" then
         v:Destroy()
     end
 end
 
-local Syaoul_UI = Instance.new("ScreenGui")
-Syaoul_UI.Name = "Syaoul_UI"
-Syaoul_UI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-Syaoul_UI.Parent = game.CoreGui
+local Syaoul_Gui = Instance.new("ScreenGui")
+Syaoul_Gui.Name = "Syaoul_Gui"
+Syaoul_Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Syaoul_Gui.Parent = game.CoreGui
 
 local Library = {}
 local TweenService = game:GetService("TweenService")
@@ -80,10 +80,10 @@ function Library:Create(table)
     shadow.Selectable = true
     shadow.Size = UDim2.fromOffset(529, 331)
     shadow.ZIndex = -1
-    shadow.Parent = Syaoul_UI
+    shadow.Parent = Syaoul_Gui
 
     tabContainer.Parent = main
-    main.Parent = Syaoul_UI
+    main.Parent = Syaoul_Gui
     main.AnchorPoint = Vector2.new(0.5,0.5)
     shadow.AnchorPoint = Vector2.new(0.5,0.5)
 
@@ -93,7 +93,7 @@ function Library:Create(table)
     local tabHandler = {}
 
     function tabHandler:Exit()
-        Syaoul_UI:Destroy()
+        Syaoul_Gui:Destroy()
     end
 
     function tabHandler:Tab(name)
@@ -158,12 +158,12 @@ function Library:Create(table)
 
         --// Event
         main1.MouseButton1Click:Connect(function()
-            for _,v in pairs(game.CoreGui:FindFirstChild('Syaoul_UI').main:GetChildren()) do
+            for _,v in pairs(game.CoreGui:FindFirstChild('Syaoul_Gui').main:GetChildren()) do
                 if v.Name == "container" then
                     v.Visible = false
                 end
             end
-            for _,v in pairs(game.CoreGui['Syaoul_UI'].main.tabContainer:GetChildren()) do
+            for _,v in pairs(game.CoreGui['Syaoul_Gui'].main.tabContainer:GetChildren()) do
                 if v:IsA('TextButton') then
                     game:GetService('TweenService'):Create(v, TweenInfo.new(0.3), {TextTransparency = 0.5}):Play()
                 end
@@ -529,7 +529,7 @@ Close.Text = ""
 Close.TextColor3 = Color3.fromRGB(255, 50, 50)
 Close.TextSize = 14
 Close.MouseButton1Click:Connect(function()
-    scrgui:Destroy()
+    game:GetService("CoreGui").Syaoul_Gui:Destroy()
 end)
 
 
@@ -548,7 +548,9 @@ Disappear.Font = Enum.Font.SourceSans
 Disappear.Text = ""
 Disappear.TextColor3 = Color3.fromRGB(255, 50, 50)
 Disappear.TextSize = 14
-
+Disappear.MouseButton1Click:Connect(function()
+    game:GetService("CoreGui").Syaoul_Gui.Enabled = false
+end)
 
 local uc_19 = Instance.new("UICorner")
 uc_19.CornerRadius = UDim.new(1, 0)
@@ -576,7 +578,7 @@ uc_20.Parent = resize
             if Key.UserInputType == Enum.UserInputType.MouseButton1 then
                 local ObjectPosition = Vector2.new(Mouse.X - main.AbsolutePosition.X, Mouse.Y - main.AbsolutePosition.Y)
                 while RunService.RenderStepped:wait() and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
-                    local FrameX, FrameY = math.clamp(Mouse.X - ObjectPosition.X, 0, Syaoul_UI.AbsoluteSize.X - main.AbsoluteSize.X), math.clamp(Mouse.Y - ObjectPosition.Y, 0, Syaoul_UI.AbsoluteSize.Y - main.AbsoluteSize.Y)
+                    local FrameX, FrameY = math.clamp(Mouse.X - ObjectPosition.X, 0, Syaoul_Gui.AbsoluteSize.X - main.AbsoluteSize.X), math.clamp(Mouse.Y - ObjectPosition.Y, 0, Syaoul_Gui.AbsoluteSize.Y - main.AbsoluteSize.Y)
                     game:GetService('TweenService'):Create(main, TweenInfo.new(0.1), {Position = UDim2.fromOffset(FrameX + (main.Size.X.Offset * main.AnchorPoint.X), FrameY + (main.Size.Y.Offset * main.AnchorPoint.Y))}):Play()
                     game:GetService('TweenService'):Create(shadow, TweenInfo.new(0.1), {Position = UDim2.fromOffset(FrameX + (main.Size.X.Offset * main.AnchorPoint.X), FrameY + (main.Size.Y.Offset * main.AnchorPoint.Y))}):Play()
                 end
@@ -585,12 +587,12 @@ uc_20.Parent = resize
     end)
 
     --// Make the first tab visible
-    game.CoreGui['Syaoul_UI'].main.tabContainer.ChildAdded:Connect(function()
-        game.CoreGui['Syaoul_UI'].main:FindFirstChild('container').Visible = true
+    game.CoreGui['Syaoul_Gui'].main.tabContainer.ChildAdded:Connect(function()
+        game.CoreGui['Syaoul_Gui'].main:FindFirstChild('container').Visible = true
         pcall(function()
-            repeat wait() until game.CoreGui['Syaoul_UI'].main:FindFirstChild('tabContainer'):FindFirstChildWhichIsA('TextButton')
+            repeat wait() until game.CoreGui['Syaoul_Gui'].main:FindFirstChild('tabContainer'):FindFirstChildWhichIsA('TextButton')
         end)
-        game:GetService('TweenService'):Create(game.CoreGui['Syaoul_UI'].main:FindFirstChild('tabContainer'):FindFirstChildWhichIsA('TextButton'), TweenInfo.new(0.3), {TextTransparency = 0}):Play()
+        game:GetService('TweenService'):Create(game.CoreGui['Syaoul_Gui'].main:FindFirstChild('tabContainer'):FindFirstChildWhichIsA('TextButton'), TweenInfo.new(0.3), {TextTransparency = 0}):Play()
     end)
 
     spawn(function()
