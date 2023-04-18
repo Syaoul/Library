@@ -428,8 +428,8 @@ function Library:Create(table)
                 tog = not tog
                 callback(tog)
                 if tog then
-                    game:GetService('TweenService'):Create(frame3, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(23, 143, 75)}):Play()
-                    game:GetService('TweenService'):Create(uIStroke1, TweenInfo.new(0.2), {Color = Color3.fromRGB(32, 202, 106)}):Play()
+                    game:GetService('TweenService'):Create(frame3, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(50, 255, 55)}):Play()
+                    game:GetService('TweenService'):Create(uIStroke1, TweenInfo.new(0.2), {Color = Color3.fromRGB(30, 200, 105)}):Play()
                 else
                     game:GetService('TweenService'):Create(frame3, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(45, 45, 45)}):Play()
                     game:GetService('TweenService'):Create(uIStroke1, TweenInfo.new(0.2), {Color = Color3.fromRGB(76, 76, 76)}):Play()
@@ -461,7 +461,7 @@ function Library:Create(table)
             textLabel6.TextXAlignment = Enum.TextXAlignment.Left
             textLabel6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             textLabel6.BackgroundTransparency = 1
-            textLabel6.Position = UDim2.fromScale(0.0181, 0)
+            textLabel6.Position = UDim2.fromScale(0.0181, 0)S
             textLabel6.Size = UDim2.fromOffset(1, 32)
             textLabel6.Parent = textbox
 
@@ -499,18 +499,18 @@ function Library:Create(table)
         return ElementHandler
     end
 
--- macos style buttons
+-- macos style Buttons
 
 
-local buttons = Instance.new("Frame")
-buttons.Name = "buttons"
-buttons.Parent = main
-buttons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-buttons.BackgroundTransparency = 1
-buttons.Size = UDim2.new(0, 105, 0, 57)
+local Buttons = Instance.new("Frame")
+Buttons.Name = "Buttons"
+Buttons.Parent = main
+Buttons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Buttons.BackgroundTransparency = 1
+Buttons.Size = UDim2.new(0, 105, 0, 57)
 
 local ull_3 = Instance.new("UIListLayout")
-ull_3.Parent = buttons
+ull_3.Parent = Buttons
 ull_3.FillDirection = Enum.FillDirection.Horizontal
 ull_3.HorizontalAlignment = Enum.HorizontalAlignment.Center
 ull_3.SortOrder = Enum.SortOrder.LayoutOrder
@@ -520,7 +520,7 @@ ull_3.Padding = UDim.new(0, 10)
 
 local Close = Instance.new("TextButton")
 Close.Name = "Close"
-Close.Parent = buttons
+Close.Parent = Buttons
 Close.BackgroundColor3 = Color3.fromRGB(254, 94, 86)
 Close.Size = UDim2.new(0, 16, 0, 16)
 Close.AutoButtonColor = false
@@ -540,7 +540,7 @@ uc_18.Parent = Close
 
 local Disappear = Instance.new("TextButton")
 Disappear.Name = "Disappear"
-Disappear.Parent = buttons
+Disappear.Parent = Buttons
 Disappear.BackgroundColor3 = Color3.fromRGB(255, 189, 46)
 Disappear.Size = UDim2.new(0, 16, 0, 16)
 Disappear.AutoButtonColor = false
@@ -559,7 +559,7 @@ uc_19.Parent = Disappear
 
 local resize = Instance.new("TextButton")
 resize.Name = "resize"
-resize.Parent = buttons
+resize.Parent = Buttons
 resize.BackgroundColor3 = Color3.fromRGB(39, 200, 63)
 resize.Size = UDim2.new(0, 16, 0, 16)
 resize.AutoButtonColor = false
