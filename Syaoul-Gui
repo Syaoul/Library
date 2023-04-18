@@ -417,11 +417,11 @@ function Library:Create(table)
             local tog = false
 
             toggle1.MouseEnter:Connect(function()
-                game:GetService('TweenService'):Create(toggle1, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(255, 35, 45)}):Play()
+                game:GetService('TweenService'):Create(toggle1, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(43,43,43)}):Play()
             end)
 
             toggle1.MouseLeave:Connect(function()
-                game:GetService('TweenService'):Create(toggle1, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(200, 30, 30)}):Play()
+                game:GetService('TweenService'):Create(toggle1, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(38,38,38)}):Play()
             end)
 
             toggle1.MouseButton1Click:Connect(function()
