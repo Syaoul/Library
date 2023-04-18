@@ -77,7 +77,7 @@ end)
 
 ### Creating a Label
 ```lua
-Label:Label('This is a label')
+Tab:Label('This is a label')
 ```
 
 ---
