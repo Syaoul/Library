@@ -461,7 +461,7 @@ function Library:Create(table)
             textLabel6.TextXAlignment = Enum.TextXAlignment.Left
             textLabel6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             textLabel6.BackgroundTransparency = 1
-            textLabel6.Position = UDim2.fromScale(0.0181, 0)S
+            textLabel6.Position = UDim2.fromScale(0.0181, 0)
             textLabel6.Size = UDim2.fromOffset(1, 32)
             textLabel6.Parent = textbox
 
