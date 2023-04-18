@@ -396,7 +396,7 @@ function Library:Create(table)
 
             local frame3 = Instance.new("Frame")
             frame3.Name = "frame3"
-            frame3.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+            frame3.BackgroundColor3 = Color3.fromRGB(255, 35, 45)
             frame3.Position = UDim2.fromScale(0.943, 0.219)
             frame3.Size = UDim2.fromOffset(18, 18)
 
@@ -432,7 +432,7 @@ function Library:Create(table)
                     game:GetService('TweenService'):Create(uIStroke1, TweenInfo.new(0.2), {Color = Color3.fromRGB(30, 200, 105)}):Play()
                 else
                     game:GetService('TweenService'):Create(frame3, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(255, 35, 45)}):Play()
-                    game:GetService('TweenService'):Create(uIStroke1, TweenInfo.new(0.2), {Color = Color3.fromRGB(76, 76, 76)}):Play()
+                    game:GetService('TweenService'):Create(uIStroke1, TweenInfo.new(0.2), {Color = Color3.fromRGB(200, 30, 30)}):Play()
                 end
             end)
         end
