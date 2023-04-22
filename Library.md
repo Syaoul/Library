@@ -21,7 +21,7 @@
 ### Setting the Library
 
 ```lua
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/dark"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Syaoul/Library/main/Syaoul"))()
 ```
 
 ---
