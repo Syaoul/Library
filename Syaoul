@@ -1,12 +1,12 @@
-if game.CoreGui:FindFirstChild("DarkHubLib") then
-    game.CoreGui.DarkHubLib:Destroy()
+if game.CoreGui:FindFirstChild("Hub") then
+    game.CoreGui.Hub:Destroy()
 end
 game:GetService("UserInputService").InputBegan:connect(
     function(key, gpe)
         if key.KeyCode == Enum.KeyCode.RightControl then
             pcall(
                 function()
-                    for i, v in pairs(game.CoreGui.DarkHubLib:GetChildren()) do
+                    for i, v in pairs(game.CoreGui.Hub:GetChildren()) do
                         v.Visible = not v.Visible
                     end
                 end
@@ -15,7 +15,7 @@ game:GetService("UserInputService").InputBegan:connect(
     end
 )
 
-local DarkLib = {RainbowColorValue = 0, HueSelectionPosition = 0}
+local Library = {RainbowColorValue = 0, HueSelectionPosition = 0}
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
@@ -25,15 +25,15 @@ local Mouse = LocalPlayer:GetMouse()
 coroutine.wrap(
 	function()
 		while wait() do
-			DarkLib.RainbowColorValue = DarkLib.RainbowColorValue + 1 / 255
-			DarkLib.HueSelectionPosition = DarkLib.HueSelectionPosition + 1
+			Library.RainbowColorValue = Library.RainbowColorValue + 1 / 255
+			Library.HueSelectionPosition = Library.HueSelectionPosition + 1
 
-			if DarkLib.RainbowColorValue >= 1 then
-				DarkLib.RainbowColorValue = 0
+			if Library.RainbowColorValue >= 1 then
+				Library.RainbowColorValue = 0
 			end
 
-			if DarkLib.HueSelectionPosition == 93 then
-				DarkLib.HueSelectionPosition = 0
+			if Library.HueSelectionPosition == 93 then
+				Library.HueSelectionPosition = 0
 			end
 		end
 	end
@@ -136,12 +136,12 @@ function Ripple(obj)
 	)
 end
 
-local DarkHubLib = Instance.new("ScreenGui")
-DarkHubLib.Name = "DarkHubLib"
-DarkHubLib.Parent = game.CoreGui
-DarkHubLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local Hub = Instance.new("ScreenGui")
+Hub.Name = "Hub"
+Hub.Parent = game.CoreGui
+Hub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-function DarkLib:Window()
+function Library:Window()
 	local firsttab = false
 	local MainFrame = Instance.new("Frame")
 	local MainFrameUICorner = Instance.new("UICorner")
@@ -157,7 +157,7 @@ function DarkLib:Window()
 	local Glow_3 = Instance.new("ImageLabel")
 
 	MainFrame.Name = "MainFrame"
-	MainFrame.Parent = DarkHubLib
+	MainFrame.Parent = Hub
 	MainFrame.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
 	MainFrame.Position = UDim2.new(0.330445558, 0, 0.330043852, 0)
 	MainFrame.Size = UDim2.new(0, 547, 0, 341)
@@ -173,7 +173,7 @@ function DarkLib:Window()
 	Title.Position = UDim2.new(0.42778793, 0, 0.041837737, 0)
 	Title.Size = UDim2.new(0, 78, 0, 30)
 	Title.Font = Enum.Font.Gotham
-	Title.Text = "Dark Hub"
+	Title.Text = "Syaoul Hub"
 	Title.TextColor3 = Color3.fromRGB(168, 168, 168)
 	Title.TextSize = 20.000
 
@@ -1210,11 +1210,11 @@ function DarkLib:Window()
 						OldHueSelectionPosition = HueSelection.Position
 
 						while RainbowColorPicker do
-							CurrentColor.BackgroundColor3 = Color3.fromHSV(DarkLib.RainbowColorValue, 1, 1)
-							Color.BackgroundColor3 = Color3.fromHSV(DarkLib.RainbowColorValue, 1, 1)
+							CurrentColor.BackgroundColor3 = Color3.fromHSV(Library.RainbowColorValue, 1, 1)
+							Color.BackgroundColor3 = Color3.fromHSV(Library.RainbowColorValue, 1, 1)
 
 							ColorSelection.Position = UDim2.new(1, 0, 0, 0)
-							HueSelection.Position = UDim2.new(0.48, 0, 0, DarkLib.HueSelectionPosition)
+							HueSelection.Position = UDim2.new(0.48, 0, 0, Library.HueSelectionPosition)
 
 							pcall(callback, CurrentColor.BackgroundColor3)
 							wait()
@@ -1501,4 +1501,4 @@ function DarkLib:Window()
 	end
 	return Win
 end
-return DarkLib
+return Library
