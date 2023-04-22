@@ -1,10 +1,16 @@
-if game.CoreGui:FindFirstChild("MarkBeatsIsGay") then
-    game.CoreGui.MarkBeatsIsGay:Destroy()
+if game.CoreGui:FindFirstChild("DarkHubLib") then
+    game.CoreGui.DarkHubLib:Destroy()
 end
 game:GetService("UserInputService").InputBegan:connect(
     function(key, gpe)
         if key.KeyCode == Enum.KeyCode.RightControl then
-            game.CoreGui.MarkBeatsIsGay.Enabled = not game.CoreGui.MarkBeatsIsGay.Enabled
+            pcall(
+                function()
+                    for i, v in pairs(game.CoreGui.DarkHubLib:GetChildren()) do
+                        v.Visible = not v.Visible
+                    end
+                end
+            )
         end
     end
 )
@@ -33,40 +39,61 @@ coroutine.wrap(
 	end
 )()
 
-local function MakeDraggable(topbarobject, object) 
-    pcall(
-        function()
-    local dragging = false
-    local dragInput, mousePos, framePos
+local function MakeDraggable(topbarobject, object)
+	local Dragging = nil
+	local DragInput = nil
+	local DragStart = nil
+	local StartPosition = nil
 
-    topbarobject.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 then
-            dragging = true
-            mousePos = input.Position
-            framePos = object.Position
-            
-            input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragging = false
-                end
-            end)
-        end
-    end)
+	local function Update(input)
+		local Delta = input.Position - DragStart
+		local pos =
+			UDim2.new(
+				StartPosition.X.Scale,
+				StartPosition.X.Offset + Delta.X,
+				StartPosition.Y.Scale,
+				StartPosition.Y.Offset + Delta.Y
+			)
+		local Tween = TweenService:Create(object, TweenInfo.new(0.2), {Position = pos})
+		Tween:Play()
+	end
 
-    topbarobject.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement then
-            dragInput = input
-        end
-    end)
+	topbarobject.InputBegan:Connect(
+		function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				Dragging = true
+				DragStart = input.Position
+				StartPosition = object.Position
 
-    UserInputService.InputChanged:Connect(function(input)
-        if input == dragInput and dragging then
-            local delta = input.Position - mousePos
-            object.Position  = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
-        end
-    end)
-end
-)
+				input.Changed:Connect(
+					function()
+						if input.UserInputState == Enum.UserInputState.End then
+							Dragging = false
+						end
+					end
+				)
+			end
+		end
+	)
+
+	topbarobject.InputChanged:Connect(
+		function(input)
+			if
+				input.UserInputType == Enum.UserInputType.MouseMovement or
+					input.UserInputType == Enum.UserInputType.Touch
+			then
+				DragInput = input
+			end
+		end
+	)
+
+	UserInputService.InputChanged:Connect(
+		function(input)
+			if input == DragInput and Dragging then
+				Update(input)
+			end
+		end
+	)
 end
 
 function Ripple(obj)
@@ -110,15 +137,8 @@ function Ripple(obj)
 end
 
 local DarkHubLib = Instance.new("ScreenGui")
-DarkHubLib.Name = "MarkBeatsIsGay"
-if syn and syn.protect_gui then
-    syn.protect_gui(DarkHubLib)
-    DarkHubLib.Parent = game.CoreGui
-elseif gethui then
-    DarkHubLib.Parent = gethui()
-else
-    DarkHubLib.Parent = game.CoreGui
-end
+DarkHubLib.Name = "DarkHubLib"
+DarkHubLib.Parent = game.CoreGui
 DarkHubLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 function DarkLib:Window()
@@ -216,82 +236,7 @@ function DarkLib:Window()
 	DraggableFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	DraggableFrame.BackgroundTransparency = 1.000
 	DraggableFrame.Size = UDim2.new(0, 547, 0, 59)
-local function BloxcrusherBanner()
-        local closebtnhover = false
-        local AdFrame = Instance.new("Frame")
-        local AdImg = Instance.new("ImageLabel")
-        local AdClose = Instance.new("ImageButton")
-        local ClickedFrame = Instance.new("Frame")
-        local ClickLabel = Instance.new("TextLabel")
-        AdFrame.Name = "AdFrame"
-        AdFrame.Parent = DarkHubLib
-        AdFrame.AnchorPoint = Vector2.new(0.5, 1)
-        AdFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        AdFrame.BackgroundTransparency = 1.000
-        AdFrame.Position = UDim2.new(0.5, 0, 1, -20)
-        AdFrame.Size = UDim2.new(0, 720, 0, 90)
-        local decals = {"7300398174", "7300399913", "7300400639"}        
-        AdImg.Name = "AdImg"
-        AdImg.Parent = AdFrame
-        AdImg.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        AdImg.Size = UDim2.new(1, 0, 1, 0)
-        AdImg.Image = "rbxassetid://"..tostring(decals[math.random(#decals)])
-        AdImg.BackgroundTransparency = 1.000
-        AdClose.Name = "AdClose?"
-        AdClose.Parent = AdImg
-        AdClose.AnchorPoint = Vector2.new(1, 0)
-        AdClose.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        AdClose.BackgroundTransparency = 1.000
-        AdClose.Position = UDim2.new(1, -5, 0, 5)
-        AdClose.Size = UDim2.new(0, 15, 0, 15)
-        AdClose.ZIndex = 2
-        AdClose.Image = "http://www.roblox.com/asset/?id=6521435525"
-        ClickedFrame.Name = "ClickedFrame"
-        ClickedFrame.Parent = AdFrame
-        ClickedFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-        ClickedFrame.BackgroundTransparency = 1.000
-        ClickedFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
-        ClickedFrame.Size = UDim2.new(1, 0, 1, 0)
-        ClickedFrame.ZIndex = 3
-        ClickLabel.Name = "ClickLabel"
-        ClickLabel.Parent = ClickedFrame
-        ClickLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-        ClickLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        ClickLabel.BackgroundTransparency = 1.000
-        ClickLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
-        ClickLabel.Size = UDim2.new(0, 200, 0, 50)
-        ClickLabel.ZIndex = 3
-        ClickLabel.Font = Enum.Font.Gotham
-        ClickLabel.Text = "Website link copied to clipboard"
-        ClickLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-        ClickLabel.TextSize = 22.000
-        ClickLabel.TextTransparency = 1.000
 
-        AdClose.MouseEnter:Connect(function()
-            closebtnhover = true
-        end)
-        AdClose.MouseLeave:Connect(function()
-            closebtnhover = false
-        end)
-        AdClose.MouseButton1Click:Connect(function()
-            AdFrame:Destroy()
-        end)
-
-        AdImg.InputBegan:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not closebtnhover then
-                spawn(function()
-                    setclipboard("https://fluxteam.xyz/")
-                    ClickedFrame.BackgroundTransparency = 0.2
-                    ClickLabel.TextTransparency = 0
-                    wait(1)
-                    ClickedFrame.BackgroundTransparency = 1
-                    ClickLabel.TextTransparency = 1
-                end)
-            end
-        end)        
-    end    
-    --BloxcrusherBanner()
-    
 	MakeDraggable(DraggableFrame, MainFrame)
 	local Win = {}
 	function Win:Tab(text)
@@ -450,8 +395,8 @@ local function BloxcrusherBanner()
 			ItemHolder.CanvasSize = UDim2.new(0, 0, 0, ItemHolderUIList.AbsoluteContentSize.Y)
 		end
 
-		function Cont:Toggle(text, callback,Toggled)
-			local Toggled = Toggled or false
+		function Cont:Toggle(text, callback)
+			local Toggled = false
 			local Toggle = Instance.new("TextButton")
 			local ToggleUICorner = Instance.new("UICorner")
 			local Title = Instance.new("TextLabel")
@@ -489,12 +434,7 @@ local function BloxcrusherBanner()
 
 			Status.Name = "Status"
 			Status.Parent = Toggle
-			if Toggled then
-			    pcall(callback, Toggled)
-			    Status.BackgroundColor3 = Color3.fromRGB(44, 255, 58)
-			else
-			    Status.BackgroundColor3 = Color3.fromRGB(255, 39, 42)
-			end
+			Status.BackgroundColor3 = Color3.fromRGB(255, 39, 42)
 			Status.Position = UDim2.new(0.947046876, 0, 0.172413796, 0)
 			Status.Size = UDim2.new(0, 19, 0, 19)
 
@@ -548,7 +488,7 @@ local function BloxcrusherBanner()
 			ItemHolder.CanvasSize = UDim2.new(0, 0, 0, ItemHolderUIList.AbsoluteContentSize.Y)
 		end
 
-		function Cont:Slider(text, min, max, callback,default)
+		function Cont:Slider(text, min, max, callback)
 			local dragging = false
 			local Slider = Instance.new("TextButton")
 			local SliderUICorner = Instance.new("UICorner")
@@ -616,12 +556,10 @@ local function BloxcrusherBanner()
 			Value.BorderSizePixel = 0
 			Value.Size = UDim2.new(1, 0, 1, 0)
 			Value.Font = Enum.Font.Gotham
-			Value.Text = default and tostring(default) or min
+			Value.Text = min
 			Value.TextColor3 = Color3.fromRGB(195, 195, 195)
 			Value.TextSize = 14.000
-			if default then
-                pcall(callback, default)
-            end
+
 			local function slide(input)
 				local pos =
 					UDim2.new(
