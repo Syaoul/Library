@@ -26,13 +26,13 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Syaoul/Library/main/Syaoul"))()
 ```
 
----
-
 ### Creating a Window
 
 ```lua
 local Window = Library:Window()
 ```
+
+---
 
 ### Creating a Tab
 
