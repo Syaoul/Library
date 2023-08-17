@@ -1496,17 +1496,18 @@ function Library:Window()
 			LabelUICorner.Name = "LabelUICorner"
 			LabelUICorner.Parent = Label
 			ItemHolder.CanvasSize = UDim2.new(0, 0, 0, ItemHolderUIList.AbsoluteContentSize.Y)
+
 			--// Buttons
 
-			local buttons = Instance.new("Frame")
-			buttons.Name = "buttons"
-			buttons.Parent = main
-			buttons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			buttons.BackgroundTransparency = 1
-			buttons.Size = UDim2.new(0, 105, 0, 57)
+			local Buttons = Instance.new("Frame")
+			Buttons.Name = "Buttons"
+			Buttons.Parent = main
+			Buttons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Buttons.BackgroundTransparency = 1
+			Buttons.Size = UDim2.new(0, 105, 0, 57)
 	
 			local ull_3 = Instance.new("UIListLayout")
-			ull_3.Parent = buttons
+			ull_3.Parent = Buttons
 			ull_3.FillDirection = Enum.FillDirection.Horizontal
 			ull_3.HorizontalAlignment = Enum.HorizontalAlignment.Center
 			ull_3.SortOrder = Enum.SortOrder.LayoutOrder
@@ -1516,7 +1517,7 @@ function Library:Window()
 	
 			local Close = Instance.new("TextButton")
 			Close.Name = "Close"
-			Close.Parent = buttons
+			Close.Parent = Buttons
 				Close.BackgroundColor3 = Color3.fromRGB(254, 94, 86)
 			Close.Size = UDim2.new(0, 16, 0, 16)
 			Close.AutoButtonColor = false
@@ -1536,7 +1537,7 @@ function Library:Window()
 	
 		local Enabled = Instance.new("TextButton")
 		Enabled.Name = "Enabled"
-		Enabled.Parent = buttons
+		Enabled.Parent = Buttons
 		Enabled.BackgroundColor3 = Color3.fromRGB(255, 189, 46)
 		Enabled.Size = UDim2.new(0, 16, 0, 16)
 		Enabled.AutoButtonColor = false
@@ -1555,7 +1556,7 @@ function Library:Window()
 	
 		local Mini = Instance.new("TextButton")
 		Mini.Name = "Mini"
-		Mini.Parent = buttons
+		Mini.Parent = Buttons
 		Mini.BackgroundColor3 = Color3.fromRGB(39, 200, 63)
 		Mini.Size = UDim2.new(0, 16, 0, 16)
 		Mini.AutoButtonColor = false
